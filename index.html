@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Github</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img class="profile-avatar" src="https://via.placeholder.com/180x180" alt=".">
+            <h1 class="profile-name"></h1>
+            <h2 class="profile-username"></h2>
+            <ul class="numbers">
+                <li class="numbers-item">
+                    <h4 id="repository"></h4>
+                </li>
+                <li class="numbers-item">
+                    <h4 id="follow"></h4>
+                </li>
+                <li class="numbers-item">
+                    <h4 id="following"></h4>
+                </li>
+            </ul>
+            <a href="#" class="profile-link"></a>
+        </div>
+    </header>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const $ = (selector) => document.querySelectorAll(selector);
+            const avatar = $('.profile-avatar')
+            const name = $('.profile-name')
+            const userName = $('.profile-username')
+            const repository = $('#repository')
+            const following = $('#following')
+            const follow = $('#follow')
+            const link = $('.profile-link')
+
+            fetch('https://api.github.com/users/PauloVieira28')
+            .then(function(res){
+                return res.json
+            })
+            .then(function(json){
+                avatarElement.src = json.avatar_url
+                userNameElement.innerText = json.login
+                nameElement.innerText = json.name
+                repository.innerText = json.public_repos
+                followingElement.innerText = json.following
+                followElement.innerText = json.follow
+                linkElement.href = json.html_url
+            })
+        })
+    </script>
+</body>
+</html>
+
